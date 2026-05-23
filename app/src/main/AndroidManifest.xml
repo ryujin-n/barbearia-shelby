@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Clinicasintonia">
         <activity
+            android:name=".configuracoes"
+            android:exported="false" />
+        <activity
+            android:name=".agenda_editar"
+            android:exported="false" />
+        <activity
+            android:name=".agenda_cadastro"
+            android:exported="false" />
+        <activity
             android:name=".funcionarios"
             android:exported="false" />
         <activity
