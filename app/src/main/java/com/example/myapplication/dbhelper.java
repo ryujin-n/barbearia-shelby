@@ -184,9 +184,7 @@ public class dbhelper extends SQLiteOpenHelper {
 
     public void delUser(int userId){
         SQLiteDatabase db = this.getWritableDatabase();
-        // Deletar agendamentos do usuário primeiro
         db.delete(TABELA_AGEND, COL_AG_FK_USER + "=?", new String[]{String.valueOf(userId)});
-        // Deletar o usuário
         db.delete(TABELA_USUARIOS, COL_USER_ID + "=?", new String[]{String.valueOf(userId)});
         db.close();
     }

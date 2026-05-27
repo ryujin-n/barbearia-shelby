@@ -102,7 +102,6 @@ public class novo_agendamento extends AppCompatActivity {
             TimePickerDialog dialog = new TimePickerDialog(
                     this,
                     (view, hourOfDay, minuteOfHour) -> {
-                        // arredonda para :00 ou :30
                         int minAjustado  = (minuteOfHour < 15) ? 0 : (minuteOfHour < 45) ? 30 : 0;
                         int horaAjustada = (minuteOfHour >= 45) ? (hourOfDay + 1) % 24 : hourOfDay;
 
@@ -130,7 +129,6 @@ public class novo_agendamento extends AppCompatActivity {
         int id = binding.chipGroupServico.getCheckedChipId();
         if (id == View.NO_ID) return "";
         
-        // Busca o chip dentro do grupo para garantir que o encontramos
         Chip chip = binding.chipGroupServico.findViewById(id);
         return chip != null ? chip.getText().toString() : "";
     }
