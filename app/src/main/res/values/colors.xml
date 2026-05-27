@@ -2,4 +2,22 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="midnightblue">#1E2A3A</color>
+    <color name="alizarin">#E53935</color>
+
+    <!-- Erro -->
+    <color name="md_error">#B3261E</color>
+    <color name="md_on_error">#FFFFFF</color>
+    <color name="md_error_container">#F9DEDC</color>
+    <color name="md_on_error_container">#410E0B</color>
+    <!-- Warning -->
+    <color name="md_warning">#F9A825</color>
+    <color name="md_on_warning">#1C1B1F</color>
+    <!-- Sucesso -->
+    <color name="md_success">#2E7D32</color>
+    <color name="md_on_success">#FFFFFF</color>
+    <!-- Neutro -->
+    <color name="md_surface_variant">#49454F</color>
+    <color name="md_on_surface">#FFFFFF</color>
 </resources>
+

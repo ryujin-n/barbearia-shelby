@@ -22,5 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "clinica-sintonia"
+rootProject.name = "My Application"
 include(":app")
+ 

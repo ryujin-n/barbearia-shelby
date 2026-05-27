@@ -10,30 +10,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Clinicasintonia">
+        android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".configuracoes"
+            android:name=".novo_agendamento"
             android:exported="false" />
         <activity
-            android:name=".agenda_editar"
+            android:name=".view.agendamento"
             android:exported="false" />
         <activity
-            android:name=".agenda_cadastro"
+            android:name=".cadastro"
             android:exported="false" />
         <activity
-            android:name=".funcionarios"
-            android:exported="false" />
-        <activity
-            android:name=".pacientes"
-            android:exported="false" />
-        <activity
-            android:name=".agenda"
-            android:exported="false" />
-        <activity
-            android:name=".dashboard"
-            android:exported="false" />
-        <activity
-            android:name=".login"
+            android:name=".view.Home"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
