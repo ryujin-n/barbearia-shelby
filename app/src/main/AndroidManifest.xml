@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".perfil"
+            android:exported="false" />
+        <activity
             android:name=".novo_agendamento"
             android:exported="false" />
         <activity

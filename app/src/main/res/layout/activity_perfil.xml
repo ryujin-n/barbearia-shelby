@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutRaizPerfil"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E2A3A">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- cabeçalho -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="20dp"
+            android:background="#243447">
+
+            <ImageView
+                android:id="@+id/btnVoltar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/outline_arrow_back_ios_24"
+                app:tint="#FFFFFF"
+                android:padding="4dp"
+                android:layout_marginEnd="12dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meu Perfil"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- foto de perfil -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="32dp"
+            android:paddingBottom="24dp"
+            android:background="#243447">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp">
+
+               <ImageView
+                   android:layout_width="match_parent"
+                   android:layout_height="250dp"
+                   android:src="@drawable/logobarber1"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvNomePerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cliente"
+                android:textColor="#90CAF9"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <!-- conteúdo -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- ── ALTERAR NOME ──────────────────────── -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#243447"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#E53935"
+                app:strokeWidth="1dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/account_circle_24px"
+                            app:tint="#E53935"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Alterar Nome"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Novo nome"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:cursorColor="@color/alizarin"
+                        android:textColorHint="@color/alizarin"
+                        app:boxStrokeColor="@color/box_stroke_selector"
+                        app:hintTextColor="@color/alizarin"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editNovoNome"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
+                            android:textColor="#FFFFFF"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnSalvarNome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Salvar Nome"
+                        android:backgroundTint="#E53935"
+                        android:textColor="#FFFFFF"
+                        app:cornerRadius="10dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ── ALTERAR SENHA ─────────────────────── -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#243447"
+                app:cardCornerRadius="16dp"
+                app:strokeColor="#E53935"
+                app:strokeWidth="1dp"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_password_24px"
+                            app:tint="#E53935"
+                            android:layout_marginEnd="8dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Alterar Senha"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"/>
+                    </LinearLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Senha atual"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="@color/box_stroke_selector"
+                        app:passwordToggleTint="@color/alizarin"
+                        app:cursorColor="@color/alizarin"
+                        android:textColorHint="@color/alizarin"
+                        app:hintTextColor="@color/alizarin"
+                        app:passwordToggleEnabled="true"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editSenhaAtual"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="#FFFFFF"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nova senha"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="@color/box_stroke_selector"
+                        app:passwordToggleTint="@color/alizarin"
+                        app:cursorColor="@color/alizarin"
+                        android:textColorHint="@color/alizarin"
+                        app:hintTextColor="@color/alizarin"
+                        app:passwordToggleEnabled="true"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editNovaSenha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="#FFFFFF"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Confirmar nova senha"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" app:boxStrokeColor="@color/box_stroke_selector"
+                        app:passwordToggleTint="@color/alizarin"
+                        app:cursorColor="@color/alizarin"
+                        android:textColorHint="@color/alizarin"
+                        app:hintTextColor="@color/alizarin"
+                        app:passwordToggleEnabled="true"
+                        android:layout_marginBottom="12dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editConfirmarNovaSenha"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword"
+                            android:textColor="#FFFFFF"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/btnSalvarSenha"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Salvar Senha"
+                        android:backgroundTint="#E53935"
+                        android:textColor="#FFFFFF"
+                        app:cornerRadius="10dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ── SAIR DA CONTA ─────────────────────── -->
+            <Button
+                android:id="@+id/btnSairConta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sair da Conta"
+                android:backgroundTint="#243447"
+                android:textColor="#E53935"
+                app:strokeColor="#E53935"
+                app:strokeWidth="1dp"
+                android:layout_marginTop="8dp"
+                android:padding="14dp"
+                app:cornerRadius="12dp"/>
+
+            <Button
+                android:id="@+id/btnExcluirConta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Excluir Conta"
+                android:backgroundTint="#B3261E"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="12dp"
+                android:padding="14dp"
+                app:cornerRadius="12dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

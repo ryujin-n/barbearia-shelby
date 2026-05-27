@@ -100,6 +100,57 @@ public class dbhelper extends SQLiteOpenHelper {
         return id;
     }
 
+    public String getNomeUsuario(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(
+                TABELA_USUARIOS,
+                new String[]{COL_USER_NOME},
+                COL_USER_ID + "=?",
+                new String[]{String.valueOf(userId)},
+                null, null, null
+        );
+        String nome = "";
+        if (cursor.moveToFirst()) {
+            nome = cursor.getString(0);
+        }
+        cursor.close();
+        db.close();
+        return nome;
+    }
+
+    public boolean atualizarNome(int userId, String novoNome) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_USER_NOME, novoNome);
+        int rows = db.update(TABELA_USUARIOS, values, COL_USER_ID + "=?", new String[]{String.valueOf(userId)});
+        db.close();
+        return rows > 0;
+    }
+
+    public boolean atualizarSenha(int userId, String novaSenha) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_USER_SENHA, novaSenha);
+        int rows = db.update(TABELA_USUARIOS, values, COL_USER_ID + "=?", new String[]{String.valueOf(userId)});
+        db.close();
+        return rows > 0;
+    }
+
+    public boolean verificarSenha(int userId, String senha) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(
+                TABELA_USUARIOS,
+                new String[]{COL_USER_ID},
+                COL_USER_ID + "=? and " + COL_USER_SENHA + "=?",
+                new String[]{String.valueOf(userId), senha},
+                null, null, null
+        );
+        boolean correta = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return correta;
+    }
+
     // CRUD dos agendamentos
 
     public long criarAgendamento(int userid, String servico, String barbeiro, String dataHorario){
@@ -128,6 +179,15 @@ public class dbhelper extends SQLiteOpenHelper {
     public void delAgendamento(int agendid){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABELA_AGEND, COL_AG_ID + "=?", new String[]{String.valueOf(agendid)});
+        db.close();
+    }
+
+    public void delUser(int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Deletar agendamentos do usuário primeiro
+        db.delete(TABELA_AGEND, COL_AG_FK_USER + "=?", new String[]{String.valueOf(userId)});
+        // Deletar o usuário
+        db.delete(TABELA_USUARIOS, COL_USER_ID + "=?", new String[]{String.valueOf(userId)});
         db.close();
     }
 }
