@@ -2,9 +2,11 @@ package com.example.myapplication;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.databinding.ActivityNovoAgendamentoBinding;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -20,6 +24,11 @@ import java.util.Locale;
 public class novo_agendamento extends AppCompatActivity {
 
     private ActivityNovoAgendamentoBinding binding;
+    private dbhelper db;
+
+    private int usuarioId;
+    private String dataSelecionada    = "";
+    private String horarioSelecionado = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +43,17 @@ public class novo_agendamento extends AppCompatActivity {
             return insets;
         });
 
-        setupPickers();
+        db = new dbhelper(this);
+
+        String nomeUsuario = getIntent().getStringExtra("USER_NAME");
+        usuarioId = db.buscarUser(nomeUsuario);
+
         setupBarbeiros();
+        setupPickers();
+        setupChips();
 
         binding.btnVoltar.setOnClickListener(v -> finish());
+        binding.btnConfirmarAgendamento.setOnClickListener(v -> confirmarAgendamento());
     }
 
     private void setupBarbeiros() {
@@ -59,37 +75,106 @@ public class novo_agendamento extends AppCompatActivity {
     }
 
     private void setupPickers() {
-        // Date Picker
+
         binding.editData.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, month1, dayOfMonth) -> {
-                String selectedDate = String.format(Locale.getDefault(), "%02d/%02d/%d", dayOfMonth, month1 + 1, year1);
-                binding.editData.setText(selectedDate);
-            }, year, month, day);
+            DatePickerDialog dialog = new DatePickerDialog(
+                    this,
+                    (view, year, month, dayOfMonth) -> {
+                        dataSelecionada = String.format(
+                                Locale.getDefault(), "%02d/%02d/%d",
+                                dayOfMonth, month + 1, year
+                        );
+                        binding.editData.setText(dataSelecionada);
+                    },
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+            );
 
-            datePickerDialog.show();
+            dialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
+            dialog.show();
         });
 
-        // Time Picker (30 minute interval)
         binding.editHorario.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
-            int hour = calendar.get(Calendar.HOUR_OF_DAY);
-            int minute = calendar.get(Calendar.MINUTE);
 
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, hourOfDay, minuteOfHour) -> {
-                // Adjust to nearest 30 mins
-                int adjustedMinute = (minuteOfHour < 15) ? 0 : (minuteOfHour < 45) ? 30 : 0;
-                int adjustedHour = (minuteOfHour >= 45) ? (hourOfDay + 1) % 24 : hourOfDay;
+            TimePickerDialog dialog = new TimePickerDialog(
+                    this,
+                    (view, hourOfDay, minuteOfHour) -> {
+                        // arredonda para :00 ou :30
+                        int minAjustado  = (minuteOfHour < 15) ? 0 : (minuteOfHour < 45) ? 30 : 0;
+                        int horaAjustada = (minuteOfHour >= 45) ? (hourOfDay + 1) % 24 : hourOfDay;
 
-                String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", adjustedHour, adjustedMinute);
-                binding.editHorario.setText(selectedTime);
-            }, hour, minute, true);
+                        horarioSelecionado = String.format(
+                                Locale.getDefault(), "%02d:%02d",
+                                horaAjustada, minAjustado
+                        );
+                        binding.editHorario.setText(horarioSelecionado);
+                    },
+                    calendar.get(Calendar.HOUR_OF_DAY),
+                    calendar.get(Calendar.MINUTE),
+                    true
+            );
 
-            timePickerDialog.show();
+            dialog.show();
         });
+    }
+
+    private void setupChips() {
+        binding.chipGroupServico.setOnCheckedStateChangeListener((group, checkedIds) -> {
+        });
+    }
+
+    private String getServicoSelecionado() {
+        int id = binding.chipGroupServico.getCheckedChipId();
+        if (id == View.NO_ID) return "";
+        Chip chip = findViewById(id);
+        return chip != null ? chip.getText().toString() : "";
+    }
+
+    private void confirmarAgendamento() {
+        String servico  = getServicoSelecionado();
+        String barbeiro = binding.dropdownBarbeiro.getText().toString().trim();
+
+        if (servico.isEmpty()) {
+            showSnackbar("Selecione um serviço", "warning");
+            return;
+        }
+
+        if (barbeiro.isEmpty()) {
+            showSnackbar("Selecione um barbeiro", "warning");
+            return;
+        }
+
+        if (dataSelecionada.isEmpty()) {
+            showSnackbar("Selecione uma data", "warning");
+            return;
+        }
+
+        if (horarioSelecionado.isEmpty()) {
+            showSnackbar("Selecione um horário", "warning");
+            return;
+        }
+
+        if (usuarioId == -1) {
+            showSnackbar("Erro: Usuário não identificado. Faça login novamente.", "erro");
+            return;
+        }
+
+        String dataHorario = dataSelecionada + " às " + horarioSelecionado;
+        long id = db.criarAgendamento(usuarioId, servico, barbeiro, dataHorario);
+
+        if (id != -1) {
+            showSnackbar("Agendamento confirmado!", "sucesso");
+            binding.getRoot().postDelayed(this::finish, 1500);
+        } else {
+            showSnackbar("Erro ao agendar, tente novamente", "erro");
+        }
+    }
+
+    private void showSnackbar(String mensagem, String tipo) {
+        MainActivity.exibirSnackbar(this, binding.getRoot(), mensagem, tipo);
     }
 }

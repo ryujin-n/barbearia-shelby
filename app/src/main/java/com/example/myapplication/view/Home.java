@@ -28,12 +28,13 @@ public class Home extends AppCompatActivity {
         lblUser = findViewById(R.id.lblUser);
         Button btoAgendar = findViewById(R.id.btoAgendar);
 
+        String userName = getIntent().getStringExtra("USER_NAME");
+
         btoAgendar.setOnClickListener(v -> {
-            Intent intent = new Intent(Home.this, novo_agendamento.class);
+            Intent intent = new Intent(Home.this, agendamento.class);
+            intent.putExtra("USER_NAME", userName);
             startActivity(intent);
         });
-
-        String userName = getIntent().getStringExtra("USER_NAME");
         if (userName != null && !userName.trim().isEmpty()) {
             String firstName = userName.trim().split("\\s+")[0];
             String capitalized = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();

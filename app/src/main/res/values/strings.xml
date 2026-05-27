@@ -16,4 +16,5 @@
     <string name="resumo">Resumo</string>
     <string name="confirmar_agendamento">Confirmar Agendamento</string>
     <string name="voltar">Voltar</string>
+    <string name="label_barbeiro">Barbeiro: </string>
 </resources>

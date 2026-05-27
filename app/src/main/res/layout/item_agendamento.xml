@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardAgendamento"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/card_background"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp"
+    app:strokeColor="@color/alizarin"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- serviço -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_content_cut_24px"
+                app:tint="@color/alizarin"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"/>
+
+            <TextView
+                android:id="@+id/tvServico"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+        <!-- divisor -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#33FFFFFF"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- barbeiro -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="8dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/account_circle_24px"
+                app:tint="@color/alizarin"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/label_barbeiro"
+                android:textColor="@color/alizarin"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tvBarbeiro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_calendario"
+                app:tint="@color/alizarin"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"/>
+
+            <TextView
+                android:id="@+id/tvDataHorario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -3,7 +3,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="midnightblue">#1E2A3A</color>
+    <color name="card_background">#243447</color>
     <color name="alizarin">#E53935</color>
+    <color name="light_blue_info">#90CAF9</color>
 
     <!-- Erro -->
     <color name="md_error">#B3261E</color>

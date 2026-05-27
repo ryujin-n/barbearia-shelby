@@ -126,7 +126,7 @@ public class dbhelper extends SQLiteOpenHelper {
         );
     }
     public void delAgendamento(int agendid){
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABELA_AGEND, COL_AG_ID + "=?", new String[]{String.valueOf(agendid)});
         db.close();
     }
