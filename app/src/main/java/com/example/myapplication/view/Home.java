@@ -34,8 +34,9 @@ public class Home extends AppCompatActivity {
         });
 
         String userName = getIntent().getStringExtra("USER_NAME");
-        if (userName != null && !userName.isEmpty()) {
-            String capitalized = userName.substring(0, 1).toUpperCase() + userName.substring(1).toLowerCase();
+        if (userName != null && !userName.trim().isEmpty()) {
+            String firstName = userName.trim().split("\\s+")[0];
+            String capitalized = firstName.substring(0, 1).toUpperCase() + firstName.substring(1).toLowerCase();
             lblUser.setText(capitalized);
         }
 
