@@ -3,6 +3,7 @@ package com.example.myapplication.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,15 +17,15 @@ import java.util.List;
 public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.AgendamentoViewHolder> {
 
     private List<Agendamento> agendamentos;
-    private OnItemLongClickListener longClickListener;
+    private OnExcluirClickListener excluirClickListener;
 
-    public interface OnItemLongClickListener {
-        void onItemLongClick(Agendamento agendamento);
+    public interface OnExcluirClickListener {
+        void onExcluirClick(Agendamento agendamento);
     }
 
-    public AgendamentoAdapter(List<Agendamento> agendamentos, OnItemLongClickListener longClickListener) {
+    public AgendamentoAdapter(List<Agendamento> agendamentos, OnExcluirClickListener excluirClickListener) {
         this.agendamentos = agendamentos;
-        this.longClickListener = longClickListener;
+        this.excluirClickListener = excluirClickListener;
     }
 
     @NonNull
@@ -41,11 +42,10 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
         holder.tvBarbeiro.setText(agendamento.getBarbeiro());
         holder.tvDataHorario.setText(agendamento.getDataHorario());
 
-        holder.itemView.setOnLongClickListener(v -> {
-            if (longClickListener != null) {
-                longClickListener.onItemLongClick(agendamento);
+        holder.btnExcluir.setOnClickListener(v -> {
+            if (excluirClickListener != null) {
+                excluirClickListener.onExcluirClick(agendamento);
             }
-            return true;
         });
     }
 
@@ -61,12 +61,14 @@ public class AgendamentoAdapter extends RecyclerView.Adapter<AgendamentoAdapter.
 
     public static class AgendamentoViewHolder extends RecyclerView.ViewHolder {
         TextView tvServico, tvBarbeiro, tvDataHorario;
+        ImageButton btnExcluir;
 
         public AgendamentoViewHolder(@NonNull View itemView) {
             super(itemView);
             tvServico = itemView.findViewById(R.id.tvServico);
             tvBarbeiro = itemView.findViewById(R.id.tvBarbeiro);
             tvDataHorario = itemView.findViewById(R.id.tvDataHorario);
+            btnExcluir = itemView.findViewById(R.id.btnExcluir);
         }
     }
 }
