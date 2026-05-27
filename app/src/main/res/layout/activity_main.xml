@@ -1,89 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main"
+    android:id="@+id/layoutRaizLogin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="32dp"
+    android:fillViewport="true"
     android:background="#1E2A3A">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/logobarber1" />
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nome"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/box_stroke_selector"
-        app:hintTextColor="@color/alizarin"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        app:cursorColor="@color/alizarin"
-        android:textColorHint="@color/alizarin">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="24dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtNome"
+        <ImageView
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="16dp"
+            android:src="@drawable/logobarber1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/faca_login"
+            android:textColor="#FFFFFF"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bem_vindo_de_volta"
+            android:textColor="#90CAF9"
+            android:textSize="14sp"
+            android:layout_marginBottom="32dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="@string/nome_completo"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeColor="@color/box_stroke_selector"
+            app:hintTextColor="@color/alizarin"
+            app:startIconDrawable="@drawable/account_circle_24px"
+            app:startIconTint="@color/alizarin"
+            app:cursorColor="@color/alizarin"
+            android:textColorHint="@color/alizarin"
+            android:layout_marginBottom="16dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Senha"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeColor="@color/box_stroke_selector"
-        app:hintTextColor="@color/alizarin"
-        android:layout_marginBottom="10dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
-        app:cursorColor="@color/alizarin"
-        android:textColorHint="@color/alizarin">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName|textCapWords"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/txtSenha"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:textColor="@color/white" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:hint="Senha"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/alizarin"
+            app:startIconDrawable="@drawable/ic_password_24px"
+            app:startIconTint="@color/alizarin"
+            app:boxStrokeColor="@color/box_stroke_selector"
+            app:hintTextColor="@color/alizarin"
+            app:cursorColor="@color/alizarin"
+            android:textColorHint="@color/alizarin"
+            android:layout_marginBottom="32dp">
 
-    <Button
-        android:id="@+id/btoLogin"
-        android:layout_width="236dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="10dp"
-        android:backgroundTint="@color/alizarin"
-        android:padding="15dp"
-        android:text="Entrar"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:cornerRadius="15dp" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/txtSenha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColor="@color/white" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <TextView
-        android:id="@+id/btoCadastrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Não possui uma conta?"
-        android:layout_gravity="center"
-        android:textColor="#90CAF9"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="?attr/selectableItemBackground"
-        android:padding="8dp" />
+        <Button
+            android:id="@+id/btoLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/entrar"
+            android:backgroundTint="@color/alizarin"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:padding="16dp"
+            app:cornerRadius="12dp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/btoCadastrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nao_possui_conta"
+            android:textColor="#90CAF9"
+            android:textSize="14sp"
+            android:layout_marginTop="24dp"
+            android:padding="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground" />
+
+    </LinearLayout>
+</ScrollView>

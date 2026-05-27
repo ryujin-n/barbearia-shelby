@@ -5,7 +5,17 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+    <style name="Theme.MyApplication" parent="Base.Theme.MyApplication">
+        <!-- Configurações para a Splash Screen do Sistema (Android 12+) -->
+        <item name="android:windowSplashScreenBackground">@color/midnightblue</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/logobarber1</item>
+    </style>
+
+    <style name="Theme.Splash" parent="Base.Theme.MyApplication">
+        <item name="android:windowBackground">@color/midnightblue</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
     <style name="CircleImageView">
         <item name="cornerFamily">rounded</item>

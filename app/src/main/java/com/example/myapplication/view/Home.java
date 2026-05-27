@@ -21,7 +21,6 @@ public class Home extends AppCompatActivity {
     private TextView lblUser;
     private dbhelper db;
     private int userId;
-    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +29,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         db = new dbhelper(this);
-        userName = getIntent().getStringExtra("USER_NAME");
-        userId = db.buscarUser(userName);
+        userId = getIntent().getIntExtra("USER_ID", -1);
 
         lblUser = findViewById(R.id.lblUser);
         Button btoAgendar = findViewById(R.id.btoAgendar);
@@ -39,14 +37,13 @@ public class Home extends AppCompatActivity {
 
         btoAgendar.setOnClickListener(v -> {
             Intent intent = new Intent(Home.this, agendamento.class);
-            // Passamos o nome atualizado do banco se possível, ou apenas o ID
-            intent.putExtra("USER_NAME", db.getNomeUsuario(userId));
+            intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
 
         ftPerfil.setOnClickListener(v -> {
             Intent intent = new Intent(Home.this, perfil.class);
-            intent.putExtra("USER_NAME", db.getNomeUsuario(userId));
+            intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
 

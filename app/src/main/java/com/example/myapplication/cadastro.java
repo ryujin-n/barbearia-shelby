@@ -77,7 +77,13 @@ public class cadastro extends AppCompatActivity {
         if (id != -1) {
             MainActivity.exibirSnackbar(this, layoutRaiz, "Cadastro realizado com sucesso!", "sucesso");
 
-            layoutRaiz.postDelayed(this::finish, 1500);
+            layoutRaiz.postDelayed(() -> {
+                Intent intent = new Intent(cadastro.this, SplashActivity.class);
+                intent.putExtra("TARGET_ACTIVITY", "HOME");
+                intent.putExtra("USER_ID", (int) id);
+                startActivity(intent);
+                finish();
+            }, 1500);
 
         } else {
             MainActivity.exibirSnackbar(this, layoutRaiz, "Erro ao cadastrar, tente novamente", "erro");

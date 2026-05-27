@@ -137,7 +137,7 @@
                             android:id="@+id/editNovoNome"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
+                            android:inputType="textPersonName|textCapWords"
                             android:textColor="#FFFFFF"/>
                     </com.google.android.material.textfield.TextInputLayout>
 

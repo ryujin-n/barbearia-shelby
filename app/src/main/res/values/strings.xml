@@ -17,4 +17,13 @@
     <string name="confirmar_agendamento">Confirmar Agendamento</string>
     <string name="voltar">Voltar</string>
     <string name="label_barbeiro">Barbeiro: </string>
+    <string name="crie_sua_conta">Crie sua conta</string>
+    <string name="se_torne_fregues">Se torne um freguês da nossa barbearia</string>
+    <string name="nome_completo">Nome completo</string>
+    <string name="cadastrar_agora">CADASTRAR AGORA</string>
+    <string name="ja_possui_conta">Já possui uma conta? Faça o Login</string>
+    <string name="faca_login">Faça seu Login</string>
+    <string name="bem_vindo_de_volta">Bem-vindo de volta à nossa barbearia</string>
+    <string name="entrar">ENTRAR</string>
+    <string name="nao_possui_conta">Não possui uma conta? Cadastre-se</string>
 </resources>

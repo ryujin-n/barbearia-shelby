@@ -29,8 +29,8 @@ public class perfil extends AppCompatActivity {
         setContentView(R.layout.activity_perfil);
 
         db = new dbhelper(this);
-        userName = getIntent().getStringExtra("USER_NAME");
-        userId = db.buscarUser(userName);
+        userId = getIntent().getIntExtra("USER_ID", -1);
+        userName = db.getNomeUsuario(userId);
 
         initViews();
 
@@ -55,8 +55,22 @@ public class perfil extends AppCompatActivity {
         editConfirmarNovaSenha = findViewById(R.id.editConfirmarNovaSenha);
         tvNomePerfil = findViewById(R.id.tvNomePerfil);
 
-        tvNomePerfil.setText(userName);
-        editNovoNome.setText(userName);
+        tvNomePerfil.setText(capitalizeWords(userName));
+        editNovoNome.setText("");
+    }
+
+    private String capitalizeWords(String str) {
+        if (str == null || str.isEmpty()) return "";
+        String[] words = str.trim().split("\\s+");
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            if (!word.isEmpty()) {
+                sb.append(Character.toUpperCase(word.charAt(0)))
+                  .append(word.substring(1).toLowerCase())
+                  .append(" ");
+            }
+        }
+        return sb.toString().trim();
     }
 
     private void salvarNome() {
@@ -68,7 +82,8 @@ public class perfil extends AppCompatActivity {
 
         if (db.atualizarNome(userId, novoNome)) {
             userName = novoNome;
-            tvNomePerfil.setText(userName);
+            tvNomePerfil.setText(capitalizeWords(userName));
+            editNovoNome.setText("");
             MainActivity.exibirSnackbar(this, findViewById(R.id.layoutRaizPerfil), "Nome atualizado!", "sucesso");
         } else {
             MainActivity.exibirSnackbar(this, findViewById(R.id.layoutRaizPerfil), "Erro ao atualizar nome", "erro");

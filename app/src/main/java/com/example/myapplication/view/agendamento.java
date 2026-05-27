@@ -42,8 +42,8 @@ public class agendamento extends AppCompatActivity {
         setContentView(R.layout.activity_agendamento);
 
         db = new dbhelper(this);
-        userName = getIntent().getStringExtra("USER_NAME");
-        userId = db.buscarUser(userName);
+        userId = getIntent().getIntExtra("USER_ID", -1);
+        userName = db.getNomeUsuario(userId);
 
         initViews();
         setupRecyclerView();
