@@ -45,8 +45,7 @@ public class novo_agendamento extends AppCompatActivity {
 
         db = new dbhelper(this);
 
-        String nomeUsuario = getIntent().getStringExtra("USER_NAME");
-        usuarioId = db.buscarUser(nomeUsuario);
+        usuarioId = getIntent().getIntExtra("USER_ID", -1);
 
         setupBarbeiros();
         setupPickers();
@@ -130,7 +129,9 @@ public class novo_agendamento extends AppCompatActivity {
     private String getServicoSelecionado() {
         int id = binding.chipGroupServico.getCheckedChipId();
         if (id == View.NO_ID) return "";
-        Chip chip = findViewById(id);
+        
+        // Busca o chip dentro do grupo para garantir que o encontramos
+        Chip chip = binding.chipGroupServico.findViewById(id);
         return chip != null ? chip.getText().toString() : "";
     }
 

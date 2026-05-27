@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class dbhelper extends SQLiteOpenHelper {
     private static final String NOME_BANCO   = "barbershop.db";
-    private static final int    VERSAO_BANCO = 1;
+    private static final int    VERSAO_BANCO = 2;
 
     public static final String TABELA_USUARIOS  = "usuarios";
     public static final String COL_USER_ID      = "id";

@@ -56,7 +56,7 @@ public class agendamento extends AppCompatActivity {
 
         findViewById(R.id.btnCriarAgendamento).setOnClickListener(v -> {
             Intent intent = new Intent(agendamento.this, novo_agendamento.class);
-            intent.putExtra("USER_NAME", userName);
+            intent.putExtra("USER_ID", userId);
             startActivity(intent);
         });
 
